@@ -22,7 +22,7 @@ services:
     networks:
       - back
       - lb_web
-  app:
+  flectra:
     image: flectrahq/flectra:1.5
     links:
       - db
@@ -34,7 +34,8 @@ services:
     image: postgres:9.4
     volumes:
       - ./data:/var/lib/postgresql/data
-    env_file:
-      - ./.env
+    environment:
+      - POSTGRES_USER
+      - POSTGRES_PASSWORD
     networks:
       - back
