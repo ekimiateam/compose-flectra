@@ -3,7 +3,7 @@ set -e
 set -u
 set -x
 
-mkdir flectra
+mkdir -p flectra
 chown 104:107 ./flectra/
 
 
@@ -29,5 +29,5 @@ echo "SMTP_NAME=${MAIL_USER}" >> .env
 POSTGRES_PASSWORD=`tr -dc A-Za-z0-9_ < /dev/urandom | head -c 20 | xargs`
 POSTGRES_USER=odoo
 
-echo "POSTGRES_PASSWORD=${POSTGRES_PASSWORD}" > .env
+echo "POSTGRES_PASSWORD=${POSTGRES_PASSWORD}" >> .env
 echo "POSTGRES_USER=odoo" >> .env
