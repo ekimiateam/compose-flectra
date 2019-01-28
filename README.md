@@ -1,5 +1,5 @@
-# odoo
-Odoo application for IndieHosters
+# flectra
+flectra application for IndieHosters
 
 # How to use this image
 
