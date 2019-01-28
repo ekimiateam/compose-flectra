@@ -5,11 +5,11 @@ db:
   env_file:
    - ./.env
 app:
-  image: odoo:8
+  image: flectrahq/flectra:1.5
   links:
     - db
   volumes:
-    - ./odoo:/var/lib/odoo
+    - ./flectra:/var/lib/flectra
 web:
   image: nginx
   volumes:
