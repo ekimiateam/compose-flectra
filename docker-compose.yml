@@ -20,21 +20,21 @@ services:
     environment:
       - VIRTUAL_HOST
     networks:
-    - back
-    - lb_web
+      - back
+      - lb_web
   app:
-  image: flectrahq/flectra:1.5
-  links:
-    - db
-  volumes:
-    - ./flectra:/var/lib/flectra
+    image: flectrahq/flectra:1.5
+    links:
+      - db
+    volumes:
+      - ./flectra:/var/lib/flectra
     networks:
-    - back
+      - back
   db:
-  image: postgres:9.4
-  volumes:
-    - ./data:/var/lib/postgresql/data
-  env_file:
-    - ./.env
+    image: postgres:9.4
+    volumes:
+      - ./data:/var/lib/postgresql/data
+    env_file:
+      - ./.env
     networks:
-    - back
+      - back
