@@ -1,0 +1,33 @@
+#!/bin/bash
+set -e
+set -u
+set -x
+
+mkdir flectra
+chown 104:107 ./flectra/
+
+
+var=$(for folder in `ls /data/domains`; do cat /data/domains/$folder/.env | grep SUBNET | cut -d"=" -f2; done | sort | tail -n1)
+SUBNET=$(($var +1))
+
+echo "SUBNET=${SUBNET}" >> .env
+
+echo "MAIL_DOMAIN=${MAIL_DOMAIN}" >> .env
+
+echo "URL=${URL}" >> .env
+
+echo "VIRTUAL_HOST=${URL}" >> .env
+
+
+echo "MAIL_HOST=${MAIL_HOST}" >> .env
+echo "MAIL_PORT=${MAIL_PORT}" >> .env
+echo "MAIL_PASS=${MAIL_PASS}" >> .env
+echo "MAIL_FROM=noreply.${URL}" >> .env
+echo "SMTP_NAME=${MAIL_USER}" >> .env
+
+
+POSTGRES_PASSWORD=`tr -dc A-Za-z0-9_ < /dev/urandom | head -c 20 | xargs`
+POSTGRES_USER=odoo
+
+echo "POSTGRES_PASSWORD=${POSTGRES_PASSWORD}" > .env
+echo "POSTGRES_USER=odoo" >> .env
